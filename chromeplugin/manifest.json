@@ -2,14 +2,14 @@
     "background": {
        "scripts": [ "request.js" ]
     },
-    "description": "Redirects any www.amazon.com page to smile.amazon.com",
+    "description": "Redirects any www.amazon.com page to amzn.to/2uZjDBo",
     "icons": { "16": "SA-16x16.png",
                "48": "SA-48x48.png",
                "128": "SA-128x128.png" },
     "manifest_version": 2,
-    "name": "Smile Always",
+    "name": "Amazon Redirect",
     "permissions": [ "webRequest", "webRequestBlocking", "http://www.amazon.com/*", "https://www.amazon.com/*", "http://www.amazon.de/*", "https://www.amazon.de/*", "http://www.amazon.co.uk/*", "https://www.amazon.co.uk/*" ],
     "version": "0.94",
     "homepage_url": "http://www.smilealways.io",
-    "author":"Josh Haimson and Dan Elitzer"
+    "author":"Adapted from code by Josh Haimson and Dan Elitzer"
 }

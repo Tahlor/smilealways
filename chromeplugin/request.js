@@ -41,32 +41,41 @@ function detectRedirect(details) {
                + "|(read.amazon.)"
                + "|(login.amazon.)"
                + "|(payments.amazon.)"
-               + "|(http://)"; //all Amazon pages now redirect to HTTPS, also fixes conflict with HTTPS Everywhere extension
+               + "|(http://)"
+               + "|(2uZjDBo)"
+                ; //all Amazon pages now redirect to HTTPS, also fixes conflict with HTTPS Everywhere extension
 
     // Don't try and redirect pages that are in our filter
     if (url.match(filter) != null) {
         return;
     }
-
-    return redirectToSmile(https, amazonurl, url, country);
+    if (url == "https://www.amazon.com/") {
+        return redirectToSmile(https, amazonurl, url, country);
+    }
+    // else {
+    //     window.alert(url);
+    // }
 }
 
 function redirectToSmile(scheme, amazonurl, url, country) {
-    var smileurl = "smile.amazon.com";
-    if (country === "de") {
-    	smileurl = "smile.amazon.de";
-    } else if (country === "uk") {
-      smileurl = "smile.amazon.co.uk";
-    }
+    //var smileurl = "smile.amazon.com";
+    var redirect_url = "amzn.to/2uZjDBo";
+    //var smileurl = "facebook.com";
+    //if (country === "de") {
+    //	smileurl = "smile.amazon.de";
+    //} else if (country === "uk") {
+    //  smileurl = "smile.amazon.co.uk";
+    //}
     return {
         // redirect to amazon smile append the rest of the url
-        redirectUrl : scheme + smileurl + getRelativeRedirectUrl(amazonurl, url)
+        //redirectUrl : scheme + smileurl + getRelativeRedirectUrl(amazonurl, url)
+        redirectUrl : scheme + redirect_url
     };
 }
 
 function getRelativeRedirectUrl(amazonurl, url) {
     var relativeUrl = url.split(amazonurl)[1];
-    var noRedirectIndicator = "sa-no-redirect=1";
+    //var noRedirectIndicator = "sa-no-redirect=1";
     var paramStart = "?";
     var paramStartRegex = "\\" + paramStart;
     var newurl = null;
