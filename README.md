@@ -14,3 +14,7 @@ Installation
 1. Select `chromeplugin` folder from this repository
 
 Happy shopping.
+
+# Convert Chrome to Safari
+
+https://github.com/kritollm/chrome-extension-api-for-safari-and-firefox
