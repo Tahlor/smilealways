@@ -9,7 +9,7 @@
     "manifest_version": 2,
     "name": "Amazon Redirect",
     "permissions": [ "webRequest", "webRequestBlocking", "http://www.amazon.com/*", "https://www.amazon.com/*", "http://www.amazon.de/*", "https://www.amazon.de/*", "http://www.amazon.co.uk/*", "https://www.amazon.co.uk/*" ],
-    "version": "0.94",
-    "homepage_url": "http://www.smilealways.io",
+    "version": "0.1",
+    "homepage_url": "http://www.taylorarchibald.com/AmazonRedirect",
     "author":"Adapted from code by Josh Haimson and Dan Elitzer"
 }
