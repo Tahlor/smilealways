@@ -73,6 +73,7 @@ content.txt
 **token*
 credentials.json
 credentials*
+*.pem
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
