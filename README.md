@@ -18,3 +18,6 @@ Happy shopping.
 # Convert Chrome to Safari
 
 https://github.com/kritollm/chrome-extension-api-for-safari-and-firefox
+
+# Available in Chrome Extension Web Store
+https://chrome.google.com/webstore/detail/amazon-redirect/llagilkchfcclieioaldkekbafjnhcia
