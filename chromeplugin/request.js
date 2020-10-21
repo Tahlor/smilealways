@@ -9,9 +9,9 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
 
 function detectRedirect(details) {
     var url = details.url;
-
+    
     if (url == null) {
-        return;
+        return url;
     }
 
     var domain = url_domain(url);
@@ -23,8 +23,10 @@ function detectRedirect(details) {
     } else if (domain.includes("amazon.co.uk")) {
       amazonurl = "www.amazon.co.uk";
       country = "uk";
+    } else if (domain.includes("smile")) {
+        amazonurl = "smile.amazon.com";
     }
-
+    
     var https = "https://";
     // ignore links with these strings in them
     var filter = "(sa-no-redirect=)"
@@ -41,15 +43,53 @@ function detectRedirect(details) {
                + "|(read.amazon.)"
                + "|(login.amazon.)"
                + "|(payments.amazon.)"
+               + "|(&tag=cfm10-20)"
                + "|(http://)"; //all Amazon pages now redirect to HTTPS, also fixes conflict with HTTPS Everywhere extension
 
     // Don't try and redirect pages that are in our filter
+    
     if (url.match(filter) != null) {
-        return;
+        return ;
     }
 
+    url = addOrReplaceTag(url);
     return redirectToSmile(https, amazonurl, url, country);
 }
+
+function addOrReplaceTag(url) {
+    var paramStart = "?";
+    var paramStartRegex = "\\" + paramStart;
+    var affiliate = "cfm10-20";
+    var new_url = url;
+    
+    if (url.includes("tag="+affiliate)) {
+        return url;
+    }
+    
+    // Replace tag if needed
+    if (url.match("tag=") != null) {
+        split_url = url.split("&")
+        for(var i=0; i<split_url.length; i++) {
+          if (split_url[i].match("tag=")) {
+            //console.log(new_url[i])
+            split_url[i]=split_url[i].replace(/tag=.*/,"tag="+affiliate)
+          }
+        }
+        new_url=split_url.join("&")
+        //console.log("HERE",relativeUrl)
+    }
+
+    // check to see if there are already GET variables in the url
+    if (new_url.match("tag="+affiliate) == null) {
+      if (new_url.includes(paramStart)) {
+          new_url = new_url + "&" + "tag=" + affiliate;
+      } else {
+          new_url = new_url + paramStart + "tag=" + affiliate;
+      }
+    }    
+    return new_url;
+}
+
 
 function redirectToSmile(scheme, amazonurl, url, country) {
     var smileurl = "smile.amazon.com";
@@ -60,7 +100,7 @@ function redirectToSmile(scheme, amazonurl, url, country) {
     }
     return {
         // redirect to amazon smile append the rest of the url
-        redirectUrl : scheme + smileurl + getRelativeRedirectUrl(amazonurl, url) + "&tag=cfm10-20"
+        redirectUrl : scheme + smileurl + getRelativeRedirectUrl(amazonurl, url)
     };
 }
 
@@ -70,22 +110,6 @@ function getRelativeRedirectUrl(amazonurl, url) {
     var paramStart = "?";
     var paramStartRegex = "\\" + paramStart;
     var newurl = null;
-    var affiliate = "cfm10-20"
-        // Replace tag if needed
-    if (relativeUrl.match("tag=") != null) {
-      if (relativeUrl.match("tag="+affiliate) == null) {
-        new_url = relativeUrl.split("&")
-        //console.log("SPLIT", new_url)
-        for(var i=0; i<new_url.length; i++) {
-          if (new_url[i].match("tag=")) {
-            //console.log(new_url[i])
-            new_url[i]=new_url[i].replace(/tag=.*/,"tag="+affiliate)
-          }
-        }
-        relativeUrl=new_url.join("&")
-        //console.log("HERE",relativeUrl)
-      }
-    }
     
     // check to see if there are already GET variables in the url
     if (relativeUrl.match(paramStartRegex) != null) {
@@ -94,10 +118,6 @@ function getRelativeRedirectUrl(amazonurl, url) {
         newurl = relativeUrl + paramStart + noRedirectIndicator;
     }
     
-    // add the tag if needed - the no redirect is always added above, no need to worry about ?
-    if (newurl.match("tag="+affiliate) == null) {
-        newurl += "&tag="+affiliate
-    }
     
     return newurl;
 }
