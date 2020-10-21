@@ -16,21 +16,28 @@ Installation
 Happy shopping.
 
 # Convert Chrome to Safari
-
 https://github.com/kritollm/chrome-extension-api-for-safari-and-firefox
 
 # Available in Chrome Extension Web Store
 https://chrome.google.com/webstore/detail/amazon-redirect/llagilkchfcclieioaldkekbafjnhcia
 
-## Update store version
-https://chrome.google.com/webstore/devconsole/
+# Compile / pack
+* Load unpacked in Chrome
+* Select "Pack Extension"
+* Use old .pem file
 
+## Update store version
+* Visit https://chrome.google.com/webstore/devconsole/
+* Click on extension
+* Click "Package" in left panel, and upload a new zip file
+* Click "Publish" to publish the update
+* .pem file only needed if you're hosting the extension / pushing updates to it (as opposed to being hosted in the Chrome store)
 
 # Debugging Go to:
-    * https://jsfiddle.net/wru0qh1L/33/
-    * use the console
-    * use console.log("message") to debug/print# History
-    * Ctrl+S before running
+* https://jsfiddle.net/wru0qh1L/33/
+* use the console
+* use console.log("message") to debug/print# History
+* Ctrl+S before running
 
 ## Hints
 Example of using split, join, match, for, and regex:
