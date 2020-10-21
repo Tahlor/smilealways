@@ -18,3 +18,12 @@ Happy shopping.
 # Convert Chrome to Safari
 
 https://github.com/kritollm/chrome-extension-api-for-safari-and-firefox
+
+# Available in Chrome Extension Web Store
+https://chrome.google.com/webstore/detail/amazon-redirect/llagilkchfcclieioaldkekbafjnhcia
+
+# History
+
+### Version 3 - Redirects all amazon.com to smile.amazon and adds the tag cmf10-20
+### Version 2 - Redirects amazon.com to https://smile.amazon.com/ref=as_li_ss_tl?tag=cfm10-20
+### Version 1 - Redirects amazon.com to amzn.to/2uZjDBo

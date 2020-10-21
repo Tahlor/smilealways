@@ -2,7 +2,7 @@
     "background": {
        "scripts": [ "request.js" ]
     },
-    "description": "Redirects any www.amazon.com page to amzn.to/2uZjDBo",
+    "description": "Redirects Amazon pages to smile.amazon and adds a referral tag",
     "icons": { "16": "SA-16x16.png",
                "48": "SA-48x48.png",
                "128": "SA-128x128.png" },

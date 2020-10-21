@@ -59,7 +59,7 @@ function detectRedirect(details) {
 
 function redirectToSmile(scheme, amazonurl, url, country) {
     //var smileurl = "smile.amazon.com";
-    var redirect_url = "amzn.to/2uZjDBo";
+    var redirect_url = "https://smile.amazon.com/ref=as_li_ss_tl?tag=cfm10-20";
     //var smileurl = "facebook.com";
     //if (country === "de") {
     //	smileurl = "smile.amazon.de";
